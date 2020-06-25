@@ -151,6 +151,7 @@ function App() {
     </div>
 
     <div>
+      Presets:
       <button
       onClick = {() => {
         const rows = arches;
@@ -174,6 +175,39 @@ function App() {
         Switch Logo
       </button>
     </div>
+    
+    <section>
+      <p>Setting up Game of Life Simulation: </p>
+      <p>
+        1. Choose from either one of the presets, a randomly generated grid, or individually populate each cell
+      </p>
+      <p>
+        2. set the speed of each generation per second (defaults to 0 to process generations quickly)
+      </p>
+      <p>
+        3. Click the "RUN" button to start the simulation
+      </p>
+      <p>
+        4. Click the "stop" button to stop the simulation
+      </p>
+
+      <p>
+        Rules for the Game of Life:
+      </p>
+      <p>
+        1. as the simulation is running, you cannot populate any cells. Only when the simulation has stopped
+      </p>
+      <p>
+        2. Each living cell will die either due to solitude (having one or less living neighbors) or overpopulation (having four or more living neighbors). 
+        <br/>
+        Otherwise, it will stay alive.
+      </p>
+      <p>
+        3. A dead cell can become populated IF it has only THREE living neighbors.
+      </p>
+
+    </section>
+
     </>
   );
 }
