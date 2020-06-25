@@ -66,8 +66,11 @@ function App() {
         }
       })
     })
-    setTimeout(simulation, (document.getElementById("speed").value * 1000));
-  }, [])
+    setTimeout(() => {
+      simulation()
+      setGenerations( g => g + 1)
+    }, (document.getElementById("speed").value * 1000));
+  }, [setGenerations])
   // for(let i = 0; i < 5; i++){
   //   setGenerations(() => {
   //     console.log(generations);
