@@ -7,9 +7,10 @@ import { logo } from './Presets/switch_logo';
 function App() {
   
   const [dot, setDot] = useState(true);
-
+  const [generations, setGenerations] = useState(0);
+  
   const generateEmptyGrid = () =>{
-      const rows = [];
+    const rows = [];
       for (let i = 0; i < gridRows; i++){
         rows.push(Array.from(Array(gridCols), () => 0));
       }
@@ -18,8 +19,7 @@ function App() {
 
   const gridRows = 25;
   const gridCols = 25;
-  let generations = 0;
-
+  
   const neighborOp = [
     [0,-1],
     [-1,0],
@@ -33,13 +33,14 @@ function App() {
   const [grid, setGrid] = useState(() =>{
     return generateEmptyGrid();
   });
-
+  
   const [process, setProcess] = useState(false);
   
-    const simRef = useRef(process);
-    simRef.current = process;
+  const simRef = useRef(process);
+  simRef.current = process;
   
   const simulation = useCallback(() =>{
+    
     if (!simRef.current){
       return;
     }
@@ -61,15 +62,19 @@ function App() {
             else if (g[i][k] === 0 && neighbors === 3){
               gridCopy[i][k] = 1;
             }
-            generations++;
           }
         }
       })
     })
-    
     setTimeout(simulation, (document.getElementById("speed").value * 1000));
   }, [])
-  
+  // for(let i = 0; i < 5; i++){
+  //   setGenerations(() => {
+  //     console.log(generations);
+  //     return generations+1})
+  //   console.log(generations);
+  // }
+    
   return (
     <>
     <div style={{
@@ -109,6 +114,7 @@ function App() {
       if (!process){
         simRef.current = true;
         simulation()
+        // generationSim()
       }
         setDot(true)
     }}>
@@ -120,6 +126,7 @@ function App() {
       if (!process){
         simRef.current = true;
         simulation()
+        // generationSim()
         }
         setDot(false)
     }}>
